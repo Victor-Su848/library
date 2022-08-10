@@ -182,16 +182,21 @@ main {
     height: 200px;
     padding: 25px;
     background-color: var(--lightGray);
-
     border-radius: 15px;
 
     box-shadow: 5px 7px 16px -3px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 5px 7px 16px -3px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 5px 7px 16px -3px rgba(0, 0, 0, 0.75);
-}
 
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+}
 .card p {
-    color: white;
+    color: var(--chineseBlack);
+}
+.card p:first-child {
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
 /*form styles*/
