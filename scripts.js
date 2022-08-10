@@ -3,6 +3,7 @@ const newBookBtn = document.getElementById('new-book-btn');
 const xBtn = document.getElementById('x-btn');
 const form = document.querySelector('#new-book-form');
 
+//removes the form from screen
 function removeForm() {
     console.log('X button clicked')
     form.style.display = "none";
@@ -11,20 +12,20 @@ function removeForm() {
 
 //makes new book form visible
 newBookBtn.addEventListener('click', function () {
-    console.log('New book button clicked') 
+    console.log('New book button clicked')
     form.style.display = "flex";
     main.classList.add('blur');
 });
-//removes the form
-xBtn.addEventListener('click', function(){
+//event handler for removing form from screen
+xBtn.addEventListener('click', function () {
     removeForm();
 });
 
 
 //prevents page from reloading on form submit
-form.addEventListener('submit', function(e){
+form.addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
 
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
@@ -36,7 +37,7 @@ form.addEventListener('submit', function(e){
     addBookToLibrary(book);
     displayBooks();
 });
-    
+
 
 
 
@@ -44,6 +45,7 @@ form.addEventListener('submit', function(e){
 
 let myLibary = [];
 
+//Book constructor
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -51,30 +53,37 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+//adds book to myLibrary array
 function addBookToLibrary(book) {
     myLibary.push(book);
 }
 
+//populate main with book cards
 function displayBooks() {
     main.innerHTML = '';
     for (let i = 0; i < myLibary.length; i++) {
-        
         const book = myLibary[i];
         let card = document.createElement('div');
         card.classList.add("card");
 
-        //adds the current book's properties to the card
-        for (const property in book) {
-            console.log(book.property);
-            const para = document.createElement('p');
-            para.textContent = book[property];
-            card.append(para);
-            main.appendChild(card);
-        }
+        card.append(addPropertyToCard(book.title));
+        card.append(addPropertyToCard(book.author));
+        card.append(addPropertyToCard(book.pages, 'Pages: '));
+        card.append(addPropertyToCard(book.read, 'Read? '))
+
+        main.appendChild(card);
     }
 }
 
-addBookToLibrary(new Book("Book1", "Author1", 123, true));
-addBookToLibrary(new Book("Book2", "Author2", 321, false));
-addBookToLibrary(new Book("Book3", "Author3", 666, true));
+//returns a paragraph element containing a book property and a preface if included
+function addPropertyToCard(property, preface) {
+    preface = preface || '';
+    const para = document.createElement('p');
+    para.textContent = preface + property;
+    return para;
+}
+
+addBookToLibrary(new Book("Song of Ice and Fire", "Author1", 123, true));
+addBookToLibrary(new Book("I am Legend", "Author2", 321, false));
+addBookToLibrary(new Book("American Psycho", "Author3", 666, true));
 displayBooks();
