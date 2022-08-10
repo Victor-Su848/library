@@ -139,6 +139,7 @@ table {
     --chineseBlack: #121212;
     --antiFlashWhite: #f2f2f2;
     --lightGray: #d2d2d2;
+    --x11DarkGray: #AAAAAA;
 }
 
 header {
@@ -183,6 +184,7 @@ main {
     padding: 25px;
     background-color: var(--lightGray);
     border-radius: 15px;
+    position: relative;
 
     box-shadow: 5px 7px 16px -3px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 5px 7px 16px -3px rgba(0, 0, 0, 0.75);
@@ -198,6 +200,16 @@ main {
     font-size: 1.25rem;
     font-weight: 500;
 }
+.card input:last-child {
+    width: 25px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    filter: invert(0%) sepia(8%) saturate(2199%) hue-rotate(85deg) brightness(93%) contrast(86%);
+}
+.card input:last-child:hover {
+    opacity: .75;
+}
 
 /*form styles*/
 #new-book-btn {
@@ -207,16 +219,32 @@ main {
 }
 
 #new-book-form {
+    width: 200px;
+    height: 300px;
+    padding: 25px;
+    border: 2px solid var(--chineseBlack);
+    background-color: var(--antiFlashWhite);
+    border-radius: 15px;
+
     display: none;
     flex-direction: column;
-    width: 200px;
-    height: 400px;
-    border: 1px solid red;
+    justify-content: flex-start;
 
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+#new-book-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+#new-book-form input:first-child {
+    width: 25px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+
 }
 
 /*blur effect for when the new book form appears*/

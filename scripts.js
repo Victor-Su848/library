@@ -30,7 +30,14 @@ form.addEventListener('submit', function (e) {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
+
+    let read = document.getElementById('read');
+    if(read.checked) {
+        read = 'Yes';
+    } else {
+        read = 'No'
+    }
+    
     const book = new Book(title, author, pages, read);
 
     removeForm();
@@ -65,13 +72,26 @@ function displayBooks() {
         const book = myLibary[i];
         let card = document.createElement('div');
         card.classList.add("card");
-
+        //adds book's properties to card
         card.append(addPropertyToCard(book.title));
         card.append(addPropertyToCard(book.author));
         card.append(addPropertyToCard(book.pages, 'Pages: '));
         card.append(addPropertyToCard(book.read, 'Read? '))
-
+        //adds trash icon to card
+        let trashIcon = document.createElement('input');
+        trashIcon.setAttribute('type', 'image')
+        trashIcon.setAttribute('id', i);
+        trashIcon.setAttribute('class', '.card input:last-child')
+        trashIcon.setAttribute('src', 'media/delete.svg')
+        trashIcon.setAttribute('alt', 'trash card')
+        trashIcon.addEventListener('click', function(e){
+            removeCardFromLibrary(trashIcon.getAttribute('id'));
+            displayBooks();
+        });
+        card.append(trashIcon);
+        //adds card to main element
         main.appendChild(card);
+        
     }
 }
 
@@ -81,6 +101,10 @@ function addPropertyToCard(property, preface) {
     const para = document.createElement('p');
     para.textContent = preface + property;
     return para;
+}
+
+function removeCardFromLibrary(index) {
+    myLibary.splice(index, 1);
 }
 
 addBookToLibrary(new Book("Song of Ice and Fire", "Author1", 123, true));
