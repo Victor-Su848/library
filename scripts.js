@@ -58,29 +58,19 @@ function addBookToLibrary(book) {
 function displayBooks() {
     main.innerHTML = '';
     for (let i = 0; i < myLibary.length; i++) {
-        console.log(myLibary[i]);
+        
+        const book = myLibary[i];
+        let card = document.createElement('div');
+        card.classList.add("card");
 
-        let bookDiv = document.createElement('div');
-        bookDiv.classList.add("card");
-        bookDiv.style.border = "1px solid red";
-
-        let bookTitle = document.createElement('p');
-        let bookAuthor = document.createElement('p');
-        let bookPages = document.createElement('p');
-        let bookRead = document.createElement('p');
-
-
-        bookTitle.textContent = myLibary[i].title;
-        bookAuthor.textContent = myLibary[i].author;
-        bookPages.textContent = myLibary[i].pages;
-        bookRead.textContent = myLibary[i].read;
-
-        bookDiv.appendChild(bookTitle);
-        bookDiv.appendChild(bookAuthor);
-        bookDiv.appendChild(bookPages);
-        bookDiv.appendChild(bookRead);
-
-        main.appendChild(bookDiv);
+        //adds the current book's properties to the card
+        for (const property in book) {
+            console.log(book.property);
+            const para = document.createElement('p');
+            para.textContent = book[property];
+            card.append(para);
+            main.appendChild(card);
+        }
     }
 }
 
