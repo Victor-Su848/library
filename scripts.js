@@ -13,7 +13,7 @@ function removeForm() {
 //makes new book form visible
 newBookBtn.addEventListener('click', function () {
     console.log('New book button clicked')
-    form.style.display = "flex";
+    form.style.display = "grid";
     main.classList.add('blur');
 });
 //event handler for removing form from screen
@@ -80,12 +80,12 @@ function displayBooks() {
         //adds trash icon to card
         let trashIcon = document.createElement('input');
         trashIcon.setAttribute('type', 'image')
-        trashIcon.setAttribute('id', i);
+        
         trashIcon.setAttribute('class', '.card input:last-child')
         trashIcon.setAttribute('src', 'media/delete.svg')
         trashIcon.setAttribute('alt', 'trash card')
         trashIcon.addEventListener('click', function(e){
-            removeCardFromLibrary(trashIcon.getAttribute('id'));
+            removeCardFromLibrary(i);
             displayBooks();
         });
         card.append(trashIcon);
