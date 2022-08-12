@@ -202,16 +202,22 @@ main {
     font-size: 1.25rem;
     font-weight: 500;
 }
-
-.card input:last-child {
+.icon {
     width: 25px;
     position: absolute;
-    right: 5%;
-    bottom: 5%;
     filter: invert(0%) sepia(8%) saturate(2199%) hue-rotate(85deg) brightness(93%) contrast(86%);
+    bottom: 5%;
 }
 
-.card input:last-child:hover, #new-book-form input:first-child:hover {
+.trash-icon {
+    right: 5%;
+}
+.book-icon {
+    left: 5%;
+    width: 22px;
+}
+
+.icon:hover, #new-book-form input:first-child:hover {
     opacity: .75;
 }
 
@@ -278,7 +284,6 @@ button {
     outline: none;
     border-color: #0a65ce;
 }
-
 
 #new-book-form input:first-child {
     width: 25px;
