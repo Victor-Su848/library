@@ -128,8 +128,6 @@ function toggleReadProperty(index) {
     myLibary[index].read === 'Yes' ? myLibary[index].read = 'No' : myLibary[index].read = 'Yes';
 }
 
-addBookToLibrary(new Book("Song of Ice and Fire", "Author1", 123, 'Yes'));
-addBookToLibrary(new Book("I am Legend", "Author2", 321, 'No'));
-addBookToLibrary(new Book("American Psycho", "Author3", 666, 'No'));
+addBookToLibrary(new Book("A Game of Thrones", "George R. R. Martin", 694, 'No'));
 displayBooks();
 
