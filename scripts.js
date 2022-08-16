@@ -32,12 +32,12 @@ form.addEventListener('submit', function (e) {
     const pages = document.getElementById('pages').value;
 
     let read = document.getElementById('read');
-    if(read.checked) {
+    if (read.checked) {
         read = 'Yes';
     } else {
         read = 'No'
     }
-    
+
     const book = new Book(title, author, pages, read);
 
     removeForm();
@@ -52,13 +52,40 @@ form.addEventListener('submit', function (e) {
 
 let myLibary = [];
 
-//Book constructor
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+//Book class
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+    get title() {
+        return this._title;
+    }
+    get author() {
+        return this._author;
+    }
+    get pages() {
+        return this._pages;
+    }
+    get read() {
+        return this._read;
+    }
+    set title(title) {
+        this._title = title;
+    }
+    set author(author) {
+        this._author = author;
+    }
+    set pages(pages) {
+        this._pages = pages;
+    }
+    set read(read) {
+        this._read = read;
+    }
 }
+
 
 //adds book to myLibrary array
 function addBookToLibrary(book) {
@@ -80,7 +107,7 @@ function displayBooks() {
         //adds trash icon to card
         let trashIcon = createImageElement('media/delete.svg', 'trash icon');
         trashIcon.setAttribute('class', 'icon trash-icon');
-        trashIcon.addEventListener('click', function(e){
+        trashIcon.addEventListener('click', function (e) {
             removeCardFromLibrary(i);
             displayBooks();
         });
@@ -89,15 +116,15 @@ function displayBooks() {
         //adds book icon to card
         let bookIcon = createImageElement('media/book.svg', 'book icon');
         bookIcon.setAttribute('class', 'icon book-icon');
-        bookIcon.addEventListener('click', function(e){
+        bookIcon.addEventListener('click', function (e) {
             toggleReadProperty(i);
             displayBooks();
         });
         card.append(bookIcon);
-        
+
         //adds card to main element
         main.appendChild(card);
-        
+
     }
 }
 
