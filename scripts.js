@@ -1,3 +1,14 @@
+// form validation
+const author = document.getElementById("author");
+author.addEventListener('input', () => {
+    author.setCustomValidity("");
+    if (!author.validity.valid) {
+        author.setCustomValidity("Only letters are allowed!");
+        author.reportValidity();
+    }
+});
+
+
 const main = document.getElementsByTagName('main')[0];
 const newBookBtn = document.getElementById('new-book-btn');
 const xBtn = document.getElementById('x-btn');
@@ -44,11 +55,6 @@ form.addEventListener('submit', function (e) {
     addBookToLibrary(book);
     displayBooks();
 });
-
-
-
-
-
 
 let myLibary = [];
 
@@ -154,6 +160,9 @@ function removeCardFromLibrary(index) {
 function toggleReadProperty(index) {
     myLibary[index].read === 'Yes' ? myLibary[index].read = 'No' : myLibary[index].read = 'Yes';
 }
+
+
+
 
 addBookToLibrary(new Book("A Game of Thrones", "George R. R. Martin", 694, 'No'));
 displayBooks();
